@@ -56,6 +56,15 @@ For Xcode go to preferences > locations > select command line tools
 - There're some properties which will not work in Android or iOS.
 - Example: borderRadius in Text component will not work in iOS. So we need to wrap it with a View component to get the same styling
 
+### Adding Shadow
+
+  `elevation: 4, //to add shadow only works on android`
+  `// for ios can use below properties`
+  `shadowColor: "#000",`
+  `shadowOffset: { width: 1, height: 5 },`
+  `shadowRadius: 10,`
+  `shadowOpacity: 0.5,`
+
 ## Layouts
 
 - Uses [Flexbox](https://reactnative.dev/docs/flexbox) to create layouts
@@ -85,3 +94,7 @@ For Xcode go to preferences > locations > select command line tools
 - Items will be lazy loaded so better performance for long lists
 - By default it will look for key value in the data item
 - If data item doesn't have a key value we can use keyExtractor prop
+
+## Other Commands
+
+- `expo install expo-linear-gradient`
