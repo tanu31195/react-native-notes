@@ -55,6 +55,7 @@ For Xcode go to preferences > locations > select command line tools
 - Styles do not cascade down to child components
 - There're some properties which will not work in Android or iOS.
 - Example: borderRadius in Text component will not work in iOS. So we need to wrap it with a View component to get the same styling
+- Nested text elements will be affected by text related styles from parent
 
 ### Adding Shadow
 
@@ -95,6 +96,21 @@ For Xcode go to preferences > locations > select command line tools
 - By default it will look for key value in the data item
 - If data item doesn't have a key value we can use keyExtractor prop
 
+### Adding Custom fonts
+
+- `expo install expo-font`
+- Can also use google fonts as well using a package
+- Use in the App load
+
+  `useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  })`
+
+- Add in the style with the identifier given in the App component `fontFamily: 'open-sans-bold',`
+- `useFonts` hook returns an array and it's first element returns if the fonts are loaded
+
 ## Other Commands
 
 - `expo install expo-linear-gradient`
+- `expo install expo-app-loading`
