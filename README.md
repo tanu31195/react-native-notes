@@ -110,7 +110,83 @@ For Xcode go to preferences > locations > select command line tools
 - Add in the style with the identifier given in the App component `fontFamily: 'open-sans-bold',`
 - `useFonts` hook returns an array and it's first element returns if the fonts are loaded
 
+## Dimensions API
+
+- Import from react-native
+- Js Object not a component and this can be used anywhere
+- `Dimensions.get('window')` screen and window is same in iOS
+- In Android screen is whole screen with status bar window is without status bar
+- `const deviceWidth = Dimensions.get("window").width;`
+- `padding: deviceWidth < 380 ? 12 : 24,` value can be used with ternary operator or directly
+- Using percentage values is not helpful as width and height can be different when we want the property values to be same
+
+### Screen Orientation (useWindowDimensions)
+
+- app.json > `"orientation": "portrait",` can be `default` = both or `landscape`
+- Can use `const deviceHeight = Dimensions.get("window").height` to determine orientation and add styling
+- `marginTop: deviceHeight < 380 ? 30 : 100,`
+- Check landscape mode if width > height
+- If orientation is not locked(when user changes orientation while using the app) above solution will not work because only once the code will executed when the file code is parsed and executed(when code is outside the component function).
+- As a solution for the above issue we can use the `useWindowDimensions` hook provided by react native inside the component function
+- `const { width, height } = useWindowDimensions();` this will be dynamic because the hook will keep watching for changes
+- Use in JSX code
+  `const marginTopDistance = height < 380 ? 30 : 100;`
+  `return (`
+  `<View style={[styles.rootContainer, { marginTop: marginTopDistance }]}>`
+
+- We can use `useWindowDimensions` hook to have different UI layouts according to the orientation
+`if (width > 500) {`
+`content = (`
+
+### KeyboardAvoidingView
+
+- Can be used to avoid breaking the app when keyboard is viewed
+- App view can be wrapped using KeyboardAvoidingView component
+- KeyboardAvoidingView has 3 behaviors 'padding', 'height' and 'position'
+- Position is best in most use cases as it shift the view.
+- But when using position the KeyboardAvoidingView should be wrapped with a ScrollView
+
+ `<ScrollView style={styles.screen}>`
+ `<KeyboardAvoidingView style={styles.screen} behavior='position'>`
+ `<View style={[styles.rootContainer, { marginTop: marginTopDistance }]}>`
+
+## Platform API
+
+- For platform specific changes we can use Platform from React Native
+- `borderWidth: Platform.OS === 'ios' ? 5 : 1,` or
+- `borderWidth: Platform.select({ ios: 5, android: 1 }),` more readable
+- Can have different files for platform specific changes by adding files with platform extension to filename 
+- Eg: `Title.android.js` `Title.ios.js` Imports will only need Title `import Title from "../components/ui/Title";`
+- Can use same method to have different constant/colors files
+
+### expo-status-bar
+
+- `import { StatusBar } from "expo-status-bar";` in App.js
+- To style the status bar `<StatusBar style="light" />` dark, auto, inverted
+
 ## Other Commands
 
 - `expo install expo-linear-gradient`
 - `expo install expo-app-loading`
+
+## Expo Router
+
+Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
+
+## 🚀 How to use
+
+```sh
+npx create-react-native-app -t with-router
+```
+
+## 📝 Notes
+
+- [Expo Router: Docs](https://expo.github.io/router)
+- [Expo Router: Repo](https://github.com/expo/router)
+- [Request for Comments](https://github.com/expo/router/discussions/1)
+
+`npx create-expo-app@latest -e with-router`
+
+`npm install expo-font axios react-native-dotenv`
+
+`npx expo start --ios`
