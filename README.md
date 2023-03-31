@@ -59,12 +59,13 @@ For Xcode go to preferences > locations > select command line tools
 
 ### Adding Shadow
 
-  `elevation: 4, //to add shadow only works on android`
-  `// for ios can use below properties`
-  `shadowColor: "#000",`
-  `shadowOffset: { width: 1, height: 5 },`
-  `shadowRadius: 10,`
-  `shadowOpacity: 0.5,`
+`elevation: 4, //to add shadow only works on android`
+`// for ios can use below properties`
+`shadowColor: "#000",`
+`shadowOffset: { width: 1, height: 5 },`
+`shadowRadius: 10,`
+`shadowOpacity: 0.5,`
+`backgroundColor: 'white',` backgroundColor is required for visibility
 
 ## Layouts
 
@@ -80,7 +81,7 @@ For Xcode go to preferences > locations > select command line tools
 
 - Different props are available in the components which allows to interact and handle events.
 - For example `<TextInput onChangeText={goalInputHandler} />` onChangeText expects a function.
-- Note that  goalInputHandler is passed and not goalInputHandler(). If we add () it will execute the function at the time the UI is rendered.
+- Note that goalInputHandler is passed and not goalInputHandler(). If we add () it will execute the function at the time the UI is rendered.
 - So we only add a pointer to the function without the ().
 - When using a setState function we can pass a function which will return the existing state value.
 - Rather than directly changing state. currentGoals in this example `setGoalsList(currentGoals => [...currentGoals, enteredGoalText]);`
@@ -96,6 +97,12 @@ For Xcode go to preferences > locations > select command line tools
 - By default it will look for key value in the data item
 - If data item doesn't have a key value we can use keyExtractor prop
 
+### Image
+
+- If it's a network image we add the source equal to an object with the uri.
+- `<Image source={{uri: selectedMeal.imageUrl}}/>`
+- For network image width and height should be set
+
 ### Adding Custom fonts
 
 - `expo install expo-font`
@@ -103,9 +110,9 @@ For Xcode go to preferences > locations > select command line tools
 - Use in the App load
 
   `useFonts({
-    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-  })`
+  'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+  'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+})`
 
 - Add in the style with the identifier given in the App component `fontFamily: 'open-sans-bold',`
 - `useFonts` hook returns an array and it's first element returns if the fonts are loaded
@@ -135,8 +142,8 @@ For Xcode go to preferences > locations > select command line tools
   `<View style={[styles.rootContainer, { marginTop: marginTopDistance }]}>`
 
 - We can use `useWindowDimensions` hook to have different UI layouts according to the orientation
-`if (width > 500) {`
-`content = (`
+  `if (width > 500) {`
+  `content = (`
 
 ### KeyboardAvoidingView
 
@@ -146,16 +153,16 @@ For Xcode go to preferences > locations > select command line tools
 - Position is best in most use cases as it shift the view.
 - But when using position the KeyboardAvoidingView should be wrapped with a ScrollView
 
- `<ScrollView style={styles.screen}>`
- `<KeyboardAvoidingView style={styles.screen} behavior='position'>`
- `<View style={[styles.rootContainer, { marginTop: marginTopDistance }]}>`
+`<ScrollView style={styles.screen}>`
+`<KeyboardAvoidingView style={styles.screen} behavior='position'>`
+`<View style={[styles.rootContainer, { marginTop: marginTopDistance }]}>`
 
 ## Platform API
 
 - For platform specific changes we can use Platform from React Native
 - `borderWidth: Platform.OS === 'ios' ? 5 : 1,` or
 - `borderWidth: Platform.select({ ios: 5, android: 1 }),` more readable
-- Can have different files for platform specific changes by adding files with platform extension to filename 
+- Can have different files for platform specific changes by adding files with platform extension to filename
 - Eg: `Title.android.js` `Title.ios.js` Imports will only need Title `import Title from "../components/ui/Title";`
 - Can use same method to have different constant/colors files
 
@@ -164,10 +171,91 @@ For Xcode go to preferences > locations > select command line tools
 - `import { StatusBar } from "expo-status-bar";` in App.js
 - To style the status bar `<StatusBar style="light" />` dark, auto, inverted
 
+## Navigation [React Navigation](https://reactnavigation.org/docs/getting-started/)
+
+- `sudo npm install @react-navigation/native`
+- `npx expo install react-native-screens react-native-safe-area-context`
+- `sudo npx expo install @react-navigation/native-stack`
+
+  `<NavigationContainer>`
+  `<Stack.Navigator>`
+  `<Stack.Screen name='MealCategories' component={CategoriesScreen} />`
+  `<Stack.Screen name='MealsOverview' component={MealsOverviewScreen} />`
+  `</Stack.Navigator>`
+  `</NavigationContainer>`
+
+- First child (top most screen) inside `<Stack.Navigator>` will be used as the initial screen
+- `<Stack.Navigator initialRouteName="CategoriesScreen">` initialRouteName can also be used to set the initial screen
+
+### navigation prop & useNavigation hook
+
+- Using `navigation` prop can be used to forward navigation in child components or
+- Can use `import { useNavigation } from "@react-navigation/native"` hook as an alternative to passing navigation prop
+- `const navigation = useNavigation();` can be executed in any component function(can be a registered screen or not)
+
+### route prop & useRoute
+
+- route prop is available for any screen component that is registered in the navigator
+- It contains an object with params passed to that screen
+- `useRoute` hook contains the same behavior and can be used as an alternative instead of the prop
+- Can be used in nested component which is not registered as a screen
+- Also contains name(name of the screen), key(automatically added unique key of the screen), path(string that opened the screen via deep link)
+
+### Stack Navigator
+
+- `@react-navigation/stack` is extremely customizable, it's implemented in JavaScript. While it runs animations and gestures using natively, the performance may not be as fast as a `@react-navigation/native-stack` implementation. native-stack offers native performance and exposes native features such as large title on iOS etc.
+
+#### Customize Screens
+
+- We can use `<Stack.Screen options={{}}` prop to customize specific screens [stack-navigator options](https://reactnavigation.org/docs/native-stack-navigator#options)
+- If we need to apply same customizations to all screens add them to the navigator `<Stack.Navigator screenOptions={{}}`
+- To dynamically set options we can pass an arrow function and get route and navigation properties by react navigation, and it should return an options object
+
+  `<Stack.Screen`
+  `name='MealsOverview'`
+  `component={MealsOverviewScreen}`
+  `options={({route, navigation}) => {`
+  `const title = route.params.title`
+  `return {`
+  `title: title`
+  `}`
+  `}}`
+  `/>`
+
+- As an alternative `navigation.setOptions({ title: categoryTitle });` can be used. It should be used in useEffect/useLayoutEffect
+- useLayoutEffect is used to run the effect simultaneously with the component function
+
+#### Add header buttons
+
+- Header button can be added through the `Stack.Screen options` or from the screen `navigation.setOptions`
+
+`<Stack.Screen`
+`name='MealDetail'`
+`component={MealDetailScreen}`
+`options={{`
+`title: "Meal Detail",`
+`headerRight: () => {`
+`return <Button title='Save' />;`
+`},`
+`}}`
+`/>`
+
+- or
+
+`useLayoutEffect(() => {`
+`navigation.setOptions({`
+`headerRight: () => {`
+`return <Button title='Save' onPress={headerButtonPressHandler} />;`
+`},`
+`});`
+`}, [navigation, headerButtonPressHandler]);`
+
 ## Other Commands
 
 - `expo install expo-linear-gradient`
 - `expo install expo-app-loading`
+- `sudo npx expo install react-native@0.71.4`
+- `sudo expo update 48`
 
 ## Expo Router
 
