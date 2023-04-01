@@ -201,9 +201,24 @@ For Xcode go to preferences > locations > select command line tools
 - Can be used in nested component which is not registered as a screen
 - Also contains name(name of the screen), key(automatically added unique key of the screen), path(string that opened the screen via deep link)
 
-### Stack Navigator
+### [Stack Navigator](https://reactnavigation.org/docs/stack-navigator)
 
 - `@react-navigation/stack` is extremely customizable, it's implemented in JavaScript. While it runs animations and gestures using natively, the performance may not be as fast as a `@react-navigation/native-stack` implementation. native-stack offers native performance and exposes native features such as large title on iOS etc.
+
+### [Drawer Navigator](https://reactnavigation.org/docs/drawer-navigator)
+
+- Similar to Stack navigator configuration
+- `const Drawer = createDrawerNavigator()`
+- `<NavigationContainer>` > `<Drawer.Navigator>` > `<Drawer.Screen>`
+- `drawerIcon: ({color,size}) = > (<Ionicons name="home color={color} size={size} />)` Add add icon
+- Can use navigation prop `navigation.toggleDrawer()`
+- Can fully customize using own components
+
+### [Bottom Tabs Navigator](https://reactnavigation.org/docs/bottom-tab-navigator)
+
+- `const BottomTab = createBottomTabNavigator()`
+- `<NavigationContainer>` > `<BottomTab.Navigator>` > `<BottomTab.Screen>`
+- Can render a fully customized tab bar
 
 #### Customize Screens
 
@@ -250,6 +265,9 @@ For Xcode go to preferences > locations > select command line tools
 `});`
 `}, [navigation, headerButtonPressHandler]);`
 
+## Nested Navigators
+
+- 
 ## Other Commands
 
 - `expo install expo-linear-gradient`
