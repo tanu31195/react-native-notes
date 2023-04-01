@@ -267,13 +267,16 @@ For Xcode go to preferences > locations > select command line tools
 
 ## Nested Navigators
 
-- 
+- When nesting navigators each navigator brings in a header, can be hidden
+- [Check commit](https://github.com/tanu31195/react-native-meals-app/commit/ae1ef74e28a87fad635561305f1d3f0a41bc34b1)
+
 ## Other Commands
 
 - `expo install expo-linear-gradient`
 - `expo install expo-app-loading`
 - `sudo npx expo install react-native@0.71.4`
 - `sudo expo update 48`
+- `npm install react-native-reanimated@1 --save --save-exact`
 
 ## Expo Router
 
