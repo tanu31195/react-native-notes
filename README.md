@@ -270,6 +270,15 @@ For Xcode go to preferences > locations > select command line tools
 - When nesting navigators each navigator brings in a header, can be hidden
 - [Check commit](https://github.com/tanu31195/react-native-meals-app/commit/ae1ef74e28a87fad635561305f1d3f0a41bc34b1)
 
+## Context API & Redux
+
+- [Redux vs React's Context API](https://academind.com/tutorials/reactjs-redux-vs-context-api)
+- [Context API + Hooks](https://academind.com/tutorials/reactjs-context-api-with-hooks)
+- [Redux Toolkit](https://redux-toolkit.js.org/tutorials/quick-start)
+
+- [Context API commit](https://github.com/tanu31195/react-native-meals-app/commit/81a4d41efe53721d1cafb0bb652227e399d2aa0b)
+- [Redux Toolkit commit](https://github.com/tanu31195/react-native-meals-app/commit/0cb7deb42d5a7871b1647c7f1a0117515610c00a)
+
 ## Other Commands
 
 - `expo install expo-linear-gradient`
