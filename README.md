@@ -286,6 +286,7 @@ For Xcode go to preferences > locations > select command line tools
 - `sudo npx expo install react-native@0.71.4`
 - `sudo expo update 48`
 - `npm install react-native-reanimated@1 --save --save-exact`
+- `sudo expo publish`
 
 ## Expo Router
 
