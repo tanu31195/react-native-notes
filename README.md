@@ -289,6 +289,83 @@ For Xcode go to preferences > locations > select command line tools
 - `npm install axios`
 - `sudo expo publish`
 
+## Publishing Apps
+
+- With Expo(Managed or bare workflow), after configuring can build the App binaries with expo cloud service for all platforms and then submit to stores.
+- Without Expo, configure project, build App binaries locally and then submit to stores.
+
+### Configure App
+
+- Set Permissions (info.plist file and androidmanifest.xml to set permissions)
+- App Name & identifier (app version and unique app identifier(ID))
+- Environment variable (API keys)
+- Icon & splash screen [Figma file](https://www.figma.com/community/file/1155362909441341285/Expo-App-Icon-%26-Splash)
+- `app.json` is the key configuration file [app.json / app.config.js](https://docs.expo.dev/versions/v48.0.0/config/app/)
+
+#### [Versioning](https://docs.expo.dev/versions/v48.0.0/config/app/)
+
+- `version` user facing version
+- `ios.buildNumber` & `android.versionCode`, these are internal version numbers used by the app stores
+- Set [`ios.buildNumber`](https://docs.expo.dev/versions/latest/config/app/#buildnumber) [Specified format](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion)
+- Set [`android.versionCode`](https://docs.expo.dev/versions/latest/config/app/#versioncode) Should be a positive integer [Specification](https://developer.android.com/studio/publish/versioning.html)
+
+#### [Environment variables and secrets](https://docs.expo.dev/build-reference/variables/)
+
+#### Icons and splash screen
+
+- Only need to replace the files in assets folder according to the dimensions and expo will handle different resolutions when building.
+
+### [Build App](https://docs.expo.dev/build/introduction/)
+
+- `npm install -g eas-cli`
+- `eas login`
+- `eas whoami`
+- `eas build:configure`
+
+#### [Build APKs for Android Emulators and devices](https://docs.expo.dev/build-reference/apk/)
+
+- set `build.preview.android.buildType: "apk"` Used for testing purpose to get an installable apk
+- `eas build -p android --profile preview` generate build
+- Set App identifier (Unique reverse url) `android.package`
+- Set keystore automatically or manually (required for signing the app and securing it so others cannot publish the app)
+- After build is done go to expo dev console and download the apk
+- Drag and drop the apk to the emulator or install to phone using QR or link
+
+#### [Build for iOS Simulators](https://docs.expo.dev/build-reference/simulators/)
+
+- set `build.preview.ios.simulator: "true"` Used for testing purpose to get an installable app
+- `eas build -p ios --profile preview` generate build
+- Set iOS bundle identifier (Unique reverse url) `android.package`
+- Download zip file from given url, then drag and drop the .app file
+
+### [Build for app stores](https://docs.expo.dev/build/setup/#build-for-app-stores)
+
+- For android run the production profile
+- For iOS need to get the membership and create certificates
+- `eas build --platform ios`
+- Can give expo access to create the certificates automatically or can create them manually
+
+#### Manual Certificate Creation
+
+- [Steps](https://docs.expo.dev/app-signing/local-credentials/#ios-credentials)
+- Need to create Distribution Certificate and Provisioning Profile
+- Login to apple developer > Go to certificates, Identifiers, Profiles > Create New Certificate > Select iOS distribution > Create Certificate Signing request file > Upload file > Continue
+- Go to certificates, Identifiers, Profiles > Register an App ID > Get bundle ID added  in `eas.json ios.bundleIdentifier` > Add description > Continue > Register
+- App Store connect > My apps > Add new app with name > Select the Bundle ID create above > Give full access > Add internal identifier > Create
+- Go to certificates, Identifiers, Profiles > Create New Profile > App Store provisioning profile > Select Above app > Continue > Select Distribution certificate > Give name to profile > Generate > Download
+- Create a new `certs/ios` folder at root level(not in source code) and add the files. Add certs folder to gitignore
+- From finder execute the cert > Add to keychain > Search cert that was added > My Certificates > Export > Export as P12 file > Add to cert folder > Set password
+- Create new file `credentials.json` and add the [code snippet](https://docs.expo.dev/app-signing/local-credentials/#ios-credentials). Set the profile path, p12 file path and password set above
+- `eas build --platform ios`
+- To force EAS to use local certificates set `eas.json production.credentialSource: "local"`
+- After build is completed can submit the app manually or with EAS submit
+
+### [EAS Submit](https://docs.expo.dev/submit/introduction/)
+
+- Hosted service to upload and submit apps to the store automatically.
+
+#### [Building without Expo](https://reactnative.dev/docs/running-on-device)
+
 ## Expo Router
 
 Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
