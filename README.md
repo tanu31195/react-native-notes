@@ -270,6 +270,18 @@ For Xcode go to preferences > locations > select command line tools
 - When nesting navigators each navigator brings in a header, can be hidden
 - [Check commit](https://github.com/tanu31195/react-native-meals-app/commit/ae1ef74e28a87fad635561305f1d3f0a41bc34b1)
 
+## Linking API
+
+- Used to open urls(tel, mailto)
+- Need to add `app.json expo.ios` to enable linking
+
+  `"infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "tel",
+          "mailto"
+        ]
+      }`
+
 ## Context API & Redux
 
 - [Redux vs React's Context API](https://academind.com/tutorials/reactjs-redux-vs-context-api)
