@@ -340,7 +340,7 @@ For Xcode go to preferences > locations > select command line tools
 
 ### [Build for app stores](https://docs.expo.dev/build/setup/#build-for-app-stores)
 
-- For android run the production profile
+- For android run the production profile `eas build --platform android`
 - For iOS need to get the membership and create certificates
 - `eas build --platform ios`
 - Can give expo access to create the certificates automatically or can create them manually
