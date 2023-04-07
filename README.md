@@ -291,6 +291,13 @@ For Xcode go to preferences > locations > select command line tools
 - [Context API commit](https://github.com/tanu31195/react-native-meals-app/commit/81a4d41efe53721d1cafb0bb652227e399d2aa0b)
 - [Redux Toolkit commit](https://github.com/tanu31195/react-native-meals-app/commit/0cb7deb42d5a7871b1647c7f1a0117515610c00a)
 
+## Camera
+
+- [Camera](https://docs.expo.dev/versions/latest/sdk/camera/)
+- [ImagePicker](https://docs.expo.dev/versions/latest/sdk/imagepicker/) `sudo npx expo install expo-image-picker`
+- Add permissions to `app.json`
+- For iOS need to use `useCameraPermissions` hook and `requestPermission`
+
 ## Other Commands
 
 - `expo install expo-linear-gradient`
