@@ -297,6 +297,7 @@ For Xcode go to preferences > locations > select command line tools
 - [ImagePicker](https://docs.expo.dev/versions/latest/sdk/imagepicker/) `sudo npx expo install expo-image-picker`
 - Add permissions to `app.json`
 - For iOS need to use `useCameraPermissions` hook and `requestPermission`
+- [Image picker component](https://github.com/tanu31195/react-native-traditional-meals-app/commit/6936c1a5f9a8f3145d16707b3658f61833cf12a3)
 
 ## Other Commands
 
