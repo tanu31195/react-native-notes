@@ -299,6 +299,16 @@ For Xcode go to preferences > locations > select command line tools
 - For iOS need to use `useCameraPermissions` hook and `requestPermission`
 - [Image picker component](https://github.com/tanu31195/react-native-traditional-meals-app/commit/6936c1a5f9a8f3145d16707b3658f61833cf12a3)
 
+## Location
+
+- `npx expo install expo-location` [Location](https://docs.expo.dev/versions/latest/sdk/location/)
+- Similar to Camera permissions
+- [Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview?authuser=2)
+- [Location picker component](https://github.com/tanu31195/react-native-traditional-meals-app/commit/6b6f3113efb0e078bc228fd1b8bf09392ea3644c)
+- `npx expo install react-native-maps` [Map view](https://docs.expo.dev/versions/latest/sdk/map-view/)
+- [react-native-maps](https://github.com/react-native-maps/react-native-maps)
+- [Map Scree](https://github.com/tanu31195/react-native-traditional-meals-app/commit/e48da2025cf5a4f636de421a219299ca7f04c2af)
+
 ## Other Commands
 
 - `expo install expo-linear-gradient`
