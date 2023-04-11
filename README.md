@@ -314,6 +314,7 @@ For Xcode go to preferences > locations > select command line tools
 
 - `npx expo install expo-sqlite`
 - `SQLite.openDatabase('dbName)` will open if existing DB or create a new DB
+- [Commit](https://github.com/tanu31195/react-native-traditional-meals-app/commit/b61b1e80fdd0acaaf46c48621677a5c69e8b896b)
 
 ## [Expo SplashScreen](https://docs.expo.dev/versions/v46.0.0/sdk/splash-screen/)
 
