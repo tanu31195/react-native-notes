@@ -303,11 +303,19 @@ For Xcode go to preferences > locations > select command line tools
 
 - `npx expo install expo-location` [Location](https://docs.expo.dev/versions/latest/sdk/location/)
 - Similar to Camera permissions
-- [Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview?authuser=2)
+- [Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview)
+- [Reverse Geocoding API](https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding)
 - [Location picker component](https://github.com/tanu31195/react-native-traditional-meals-app/commit/6b6f3113efb0e078bc228fd1b8bf09392ea3644c)
 - `npx expo install react-native-maps` [Map view](https://docs.expo.dev/versions/latest/sdk/map-view/)
 - [react-native-maps](https://github.com/react-native-maps/react-native-maps)
 - [Map Scree](https://github.com/tanu31195/react-native-traditional-meals-app/commit/e48da2025cf5a4f636de421a219299ca7f04c2af)
+
+## [Expo SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/)
+
+- `npx expo install expo-sqlite`
+- `SQLite.openDatabase('dbName)` will open if existing DB or create a new DB
+
+## [Expo SplashScreen](https://docs.expo.dev/versions/v46.0.0/sdk/splash-screen/)
 
 ## Other Commands
 
