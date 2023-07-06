@@ -26,7 +26,8 @@
 - Install node
 - `sudo npm install -g expo-cli`
 - `expo --version`
-- `expo init ProjectName` select blank workflow
+- Deprecated `expo init ProjectName` select blank workflow
+- New `npx create-expo-app ProjectName` <https://blog.expo.dev/the-new-expo-cli-f4250d8e3421>
 - `npm start` or `expo start`
 - app.json has app configuring
 
