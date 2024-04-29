@@ -421,6 +421,8 @@ npx create-react-native-app -t with-router
 - [Expo Router: Docs](https://expo.github.io/router)
 - [Expo Router: Repo](https://github.com/expo/router)
 - [Request for Comments](https://github.com/expo/router/discussions/1)
+- [Sentry](https://docs.sentry.io/platforms/react-native/)
+- [MixPanel](https://docs.mixpanel.com/docs/tracking-methods/sdks/react-native)
 
 `npx create-expo-app@latest -e with-router`
 
